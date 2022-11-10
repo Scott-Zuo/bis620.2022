@@ -17,7 +17,7 @@ You can install the development version of bis620.2022 from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("Scott-Zuo/bis620.2022")
+#devtools::install_github("Scott-Zuo/bis620.2022")
 ```
 
 ## Example
