@@ -8,5 +8,6 @@
 
 library(testthat)
 library(bis620.2022)
+library(vdiffr)
 
 test_check("bis620.2022")

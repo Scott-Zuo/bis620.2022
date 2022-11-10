@@ -40,6 +40,8 @@ ukb_accel |>
 #git init
 #then terminate R
 
+#intall()
+
 #use_github_action_check_standard()
 
 
