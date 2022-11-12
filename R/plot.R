@@ -11,11 +11,11 @@
 #' data(ukb_accel)
 #' accel_plot(ukb_accel[1:1000,])
 #' @export
-accel_plot = function(x) {
+accel_plot <- function(x) {
   if ("time" %in% colnames(x)) {
-    col = "time"
+    col <- "time"
   } else if ("freq" %in% colnames(x)) {
-    col = "freq"
+    col <- "freq"
   } else {
     stop("A `time` or a `freq` column must appear in the data.")
   }
@@ -25,5 +25,3 @@ accel_plot = function(x) {
       geom_line() +
       facet_grid(name ~ .)
 }
-
-

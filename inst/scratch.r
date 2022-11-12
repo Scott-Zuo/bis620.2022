@@ -3,13 +3,14 @@ library(lubridate)
 library(dplyr)
 library(ggplot2)
 library(tidyr)
+library(lintr)
 
 document()
 document()
 
 data(ukb_accel)
 
-dt = first(ukb_accel$time)
+dt <- first(ukb_accel$time)
 
 ukb_accel |>
   filter(time >= dt  & time < dt + minutes(5)) |>
@@ -20,35 +21,7 @@ ukb_accel |>
     ylab("Acceleration (in gravities)")
 
 ukb_accel |>
-  filter(time >= dt & time < dt + minutes(5) ) |>
+  filter(time >= dt & time < dt + minutes(5)) |>
   spectral_signature(take_log = TRUE) |>
  # filter(freq <= 10) |>
   accel_plot()
-
-#check()
-
-#R CMD check
-
-#library(usethis)
-#use_testthat()
-#use_test("plot")
-#test()
-
-#library(covr)
-#covr::report()
-
-#git init
-#then terminate R
-
-#intall()
-
-#use_github_action_check_standard()
-
-
-
-
-
-
-
-
-

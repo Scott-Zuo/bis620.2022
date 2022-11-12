@@ -13,12 +13,8 @@ The goal of bis620.2022 is to …
 ## Installation
 
 You can install the development version of bis620.2022 from
-[GitHub](https://github.com/) with:
-
-``` r
-# install.packages("devtools")
-#devtools::install_github("Scott-Zuo/bis620.2022")
-```
+[GitHub](https://github.com/) with: <br> `install.packages("devtools")`
+`devtools::install_github("Scott-Zuo/bis620.2022")`
 
 ## Example
 
