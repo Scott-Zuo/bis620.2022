@@ -12,6 +12,17 @@ test_that(
 )
 
 test_that(
+  "The accel_plot() returns a ggplot object.",
+  {
+    data(ukb_accel)
+    ukb_accel_freq <- ukb_accel
+    colnames(ukb_accel_freq)[1] <- "freq"
+    p <- accel_plot(ukb_accel_freq[1:100, ])
+    expect_true(inherits(p, "gg"))
+  }
+)
+
+test_that(
   "The accel_plot() errors when no time or freq column.",
   {
     data(iris)
