@@ -29,11 +29,10 @@ The dataset included in the package is from UKBiobank for examples
 ## Installation
 
 You can install the development version of bis620.2022 from [GitHub](https://github.com/) with: <br>
-`install.packages("devtools")`
+`install.packages("devtools")` <br>
 `devtools::install_github("Scott-Zuo/bis620.2022")`
 
 ## Example
-
 
 ```{r example}
 library(bis620.2022)

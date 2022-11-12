@@ -21,7 +21,7 @@ included in the package is from UKBiobank for examples
 
 You can install the development version of bis620.2022 from
 [GitHub](https://github.com/) with: <br> `install.packages("devtools")`
-`devtools::install_github("Scott-Zuo/bis620.2022")`
+<br> `devtools::install_github("Scott-Zuo/bis620.2022")`
 
 ## Example
 
