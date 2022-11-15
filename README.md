@@ -14,8 +14,9 @@ coverage](https://codecov.io/gh/Scott-Zuo/bis620.2022/branch/main/graph/badge.sv
 
 The goal of bis620.2022 is to generate accelerometry plot for dataset
 with time and 3-dimensional coordinates. It also includes a
-functionality of generating spectal signature plots. The dataset
-included in the package is from UKBiobank for examples
+functionality of generating spectral signature plots. The dataset
+`ukb_accel` included in the package is from UKBiobank for examples and
+practice use.
 
 ## Installation
 
