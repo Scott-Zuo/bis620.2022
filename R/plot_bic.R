@@ -7,11 +7,11 @@
 #' @importFrom leaps regsubsets
 #' @importFrom ggplot2 aes ggplot geom_point xlab ylab
 #' @export
-plot_bic <- function(x){
-  colNum <- ncol(x)-1
-  r <- regsubsets(x[,1] ~ .-1, data=x, nvmax=colNum)
+plot_bic <- function(x) {
+  colnum <- ncol(x) - 1
+  r <- regsubsets(x[, 1] ~ . - 1, data = x, nvmax = colnum)
   s <- summary(r)
   bic_df <- data.frame(s$bic)
-  ggplot(bic_df, aes(x=1:nrow(bic_df),y=bic_df[,1])) + geom_point() +
-    xlab("number of estimator") + ylab("BIC value")
+  ggplot(bic_df, aes(x = seq_len(nrow(bic_df)), y = bic_df[, 1])) +
+    geom_point() + xlab("number of estimator") + ylab("BIC value")
 }

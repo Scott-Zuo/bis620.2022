@@ -6,10 +6,10 @@
 #' @return a character value with names of significant estimators
 #' @importFrom leaps regsubsets
 #' @export
-bestmodel_bic <- function(x){
-  colNum <- ncol(x)-1
-  r <- regsubsets(x[,1] ~ .-1, data=x, nvmax=colNum)
+bestmodel_bic <- function(x) {
+  colnum <- ncol(x) - 1
+  r <- regsubsets(x[, 1] ~ . - 1, data = x, nvmax = colnum)
   s <- summary(r)
-  bestBIC <- s$which[which.min(s$bic),]
-  names(bestBIC[bestBIC==T])[-1]
+  bestbic <- s$which[which.min(s$bic), ]
+  names(bestbic[bestbic == TRUE])[-1]
 }

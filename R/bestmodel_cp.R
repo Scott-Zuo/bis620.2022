@@ -6,10 +6,10 @@
 #' @return a character value with names of significant estimators
 #' @importFrom leaps regsubsets
 #' @export
-bestmodel_cp <- function(x){
-  colNum <- ncol(x)-1
-  r <- regsubsets(x[,1] ~ .-1, data=x, nvmax=colNum)
+bestmodel_cp <- function(x) {
+  colnum <- ncol(x) - 1
+  r <- regsubsets(x[, 1] ~ . - 1, data = x, nvmax = colnum)
   s <- summary(r)
-  bestCP <- s$which[which.min(s$cp),]
-  names(bestCP[bestCP==T])[-1]
+  bestcp <- s$which[which.min(s$cp), ]
+  names(bestcp[bestcp == TRUE])[-1]
 }

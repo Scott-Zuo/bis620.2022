@@ -21,7 +21,7 @@ test_that(
   {
     b <- read.csv("http://www.stat.yale.edu/~jtc5/312_612/data/bodyfat.csv")
     temp <- bestmodel_cp(b)
-    expect_type(temp, 'character')
+    expect_type(temp, "character")
   }
 )
 
@@ -30,6 +30,6 @@ test_that(
   {
     b <- read.csv("http://www.stat.yale.edu/~jtc5/312_612/data/bodyfat.csv")
     temp <- bestmodel_bic(b)
-    expect_type(temp, 'character')
+    expect_type(temp, "character")
   }
 )

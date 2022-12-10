@@ -7,11 +7,11 @@
 #' @importFrom leaps regsubsets
 #' @importFrom ggplot2 aes ggplot geom_point xlab ylab
 #' @export
-plot_cp <- function(x){
-  colNum <- ncol(x)-1
-  r <- regsubsets(x[,1] ~ .-1, data=x, nvmax=colNum)
+plot_cp <- function(x) {
+  colnum <- ncol(x) - 1
+  r <- regsubsets(x[, 1] ~ . - 1, data = x, nvmax = colnum)
   s <- summary(r)
   cp_df <- data.frame(s$cp)
-  ggplot(cp_df, aes(x=1:nrow(cp_df),y=cp_df[,1])) + geom_point() +
-    xlab("number of estimator") + ylab("CP value")
+  ggplot(cp_df, aes(x = seq_len(nrow(cp_df)), y = cp_df[, 1])) +
+    geom_point() + xlab("number of estimator") + ylab("CP value")
 }
