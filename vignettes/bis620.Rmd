@@ -15,7 +15,6 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-#devtools::install_github("Scott-Zuo/bis620.2022")
 library(bis620.2022)
 ```
 
