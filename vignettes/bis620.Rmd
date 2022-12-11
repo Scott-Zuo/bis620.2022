@@ -15,6 +15,153 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
+devtools::install_github("Scott-Zuo/bis620.2022")
 library(bis620.2022)
 ```
+
+***
+# Background
+
+## Introduction
+
+Body Fat Percentage is an important index for human being as it is capable of indicating the health condition of an individual's body composition. It is defined as the following:
+
+<br>
+
+$$
+Body\space Fat\space Percentage = \frac{Total\space Mass\space of\space Fat}{Total\space Body\space Mass}
+*100
+$$
+
+<br>
+
+[Body fat](https://en.wikipedia.org/wiki/Body_fat_percentage) is usually divided into two sub-categories: essential body fat that is necessary to maintain life and reproductive functions and storage body fat which consists of fat accumulation in adipose tissue. 
+
+<br>
+
+## Motivation
+
+Since Body Fat Percentage (BFP) is usually regarded as a fitness indicator, similar to BMI and so on, body fat tend to have a lower reputation than it actually deserves. In fact, despite its negative impact to human body's daily function and athletic capability as body fat increase and accumulate in one's body, fat and limpid are actually considered an indispensable part of body composition and are of significant roles and responsibilities in terms of body metabolism and energy reservation.
+
+<br>
+
+Regardless, either for medical purposes in clinical scenarios or simple fitness purposes in people's daily life, body fat has been showing its impact and gaining increasing amount of attention to help people know better about their body composition condition. Interestingly, unlike the simple equation of its definition, a precise measurement for body fat percentage can be a complicated process. For example, scientific validated methods include the approaches of underwater weighing, whole-body air displacement plethysmography, use of X-ray absorptiometry and so on. The results are accurate but could be considered too costly in terms of both time and money.
+
+<br>
+
+This initially motivated people to investigate and attempt to find an alternative way or a so-called "best model" to estimate an individual's body fat percentage based on other anthropometric measurement that can be more easily acquired. For instance, in most [Body Fat Percentage Calculators](https://www.calculator.net/body-fat-calculator.html) available on the internet today, factors or estimators that are commonly used include gender, age, weight, height, measurement of wrist, neck, and so on. we are curious about if any of the estimators here or variables not listed are actually significant in terms of predicting one's body fat percentage. 
+
+<br>
+
+***
+# Research Question and Method
+
+## Dataset and Research Question
+To further investigate the topic of interest and develop the methodology, we chose to use this example dataset available from the Yale Statistics & Data Science department that consists of 250 observation and 14 measurements on the individuals including body fat percentage and other anthropometric measurements.
+<br>
+```{r, echo = FALSE}
+library(DT)
+x <- read.csv("http://www.stat.yale.edu/~jtc5/312_612/data/bodyfat.csv")
+datatable(x[,1:7], options = list(pageLength = 10))
+datatable(x[,8:14], options = list(pageLength = 10))
+```
+<br>
+Within the scope of this project, we will be mainly focusing on linear relationship between body fat percentage and other variables, which leads to our research question for the project:
+
+<br>
+
+**Out of all possible combinations of the explanatory variables, which measurements are the most significant estimators in terms of predicting body fat percentage of an individual?**
+
+<br>
+
+## Method for Model Selection
+
+To determine the most significant estimators from all of the measurements we currently have, one commonly used approach could be starting with a full linear model. By building a full linear model, it provides us information such as a P-value for each individual estimator, from which we can determine its significance based on a pre-determined \alpha level. However, in this project as we develop the function, we want to avoid using the P-value or artificially setting the significance bound while choosing the best estimators or number of estimators to reduce bias, which is why we consider using BIC or Mallow's CP as a criterion for model selection.
+
+<br>
+
+As it is defined in statistics, Mallow's CP and BIC criterion can be formulated as the following:
+<br>
+*For any X-variables in an n by m matrix, the model with p number of variables as estimatros has the following:*
+$$
+Mallow's\space CP: C_p = \frac{RSS_p}{S^2_m} + 2P
+$$
+$$
+Bayesian\space Information\space Criterion: BIC = nln(\sigma_p^2) + ln(n)p
+$$
+<br>
+The criterion here can help us obtain the significant estimators by minimizing its own value, the mechanism can be explained as: by punishing the larger number of variables used to build the model while also minimizing modeling error, the expression is formulated as a convex function which outputs an optimal solution that can be seen as the "best model" with most significant estimators. The biggest difference here between the CP and BIC could be that BIC has a bigger punishment parameter for larger number of variables selected, which usually leads to a smaller model compared to the output from Mallow's CP. However, both criterion return models less arbitrarily compared to using a P-value and a randomly picked alpha-level.
+
+<br>
+
+***
+# Analysis and Results
+
+With the help of package `leaps`, we are able to develop and test several useful functions that can help us analyze and assess the theories above. Specifically, two functions for each of the criterion are embedded in this `bis620.2022` package.
+
+<br>
+
+First of all, we start with some graphing tools to help us visualize the CP and BIC value as different number of estimators are used
+
+<br>
+```{r, echo = FALSE}
+library(bis620.2022)
+bis620.2022::plot_cp(x)
+```
+<br>
+```{r, echo = FALSE}
+library(bis620.2022)
+bis620.2022::plot_bic(x)
+```
+
+<br>
+
+As it is clearly indicated in the pattern from both plots, a concave-up function can generate a minimum value for the corresponding criterion which leads to the optimal output we are looking for with the significant estimators.
+<br>
+
+With the information gained from the graphs above, we then developed the functions that allow us to acquire the names of the estimators here:
+```{r, echo = FALSE, eval = FALSE}
+bestmodel_cp(x)
+bestmodel_bic(x)
+```
+
+- The Mallow's CP criterion returns the following variables as the most significant estimators: **`r bestmodel_cp(x)`**
+- The BIC criterion returns the following variables as the most significant estimators: **`r bestmodel_bic(x)`**
+
+<br>
+
+***
+# Interpretation and conclusions
+
+The results we obtained from the functions based on two different criterion are different but justifiable. As we specified earlier, discrepancy here between the CP and BIC could be explained by the fact that BIC has an increasing parameter (larger punishment) for larger number of variables selected, which usually leads to a smaller model compared to the output from Mallow's CP.
+<br>
+
+Specifically in this project, we will choose the overlapping variables from the two criterion output as the conclusive set of significant estimators to predict the body fat percentage. As a factual check, we also evaluated the modeling effectiveness by comparing the `r.squared` values between the full model and our "best model".
+
+```{r}
+summary(lm(x$Pct.BF ~ ., data = x))$r.squared
+summary(lm(x$Pct.BF ~ x$Abdomen + x$Wrist))$r.squared
+```
+
+
+- Full model: R-squared value is 0.7504947
+- Model with 2 significant estimator: R-squared value is 0.7171974
+
+<br>
+
+By the definition of R-squared value, we claim that the two significant estimators we found from our study can explain more than 71% of the total variance of body fat percentage while the other 11 variables together can only explain less than 4%. In conclusion, the measurement of an individual's abdomen and wrist can be two powerful attributes if used to predict the body fat percentage. 
+<br>
+Indeed, many of the current online BFP calculator/estimator website uses the measurement of waist or abdomen as one of their factors, but they are often missing the wrist measurement, whose significance has been proved from the results of our study. By incorporating this important factor of wrist measurement into the calculation system, it would most likely benefit the accuracy and prediction power of any BFP calculator.
+
+
+***
+# Reference
+
+[Body fat](https://en.wikipedia.org/wiki/Body_fat_percentage)
+[Body Fat Percentage Calculators](https://www.calculator.net/body-fat-calculator.html)
+[Body Composition](https://health.ucdavis.edu/sports-medicine/resources/body-fat)<br>
+[Air displacement plethysmography](https://en.wikipedia.org/wiki/Air_displacement_plethysmography)<br>
+[Underwater weighing](https://en.wikipedia.org/wiki/Hydrostatic_weighing)
+
+
 
