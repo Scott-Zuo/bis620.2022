@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-devtools::install_github("Scott-Zuo/bis620.2022")
+#devtools::install_github("Scott-Zuo/bis620.2022")
 library(bis620.2022)
 ```
 
@@ -62,8 +62,8 @@ To further investigate the topic of interest and develop the methodology, we cho
 ```{r, echo = FALSE}
 library(DT)
 x <- read.csv("http://www.stat.yale.edu/~jtc5/312_612/data/bodyfat.csv")
-datatable(x[,1:7], options = list(pageLength = 10))
-datatable(x[,8:14], options = list(pageLength = 10))
+datatable(x[, 1:7], options = list(pageLength = 10))
+datatable(x[, 8:14], options = list(pageLength = 10))
 ```
 <br>
 Within the scope of this project, we will be mainly focusing on linear relationship between body fat percentage and other variables, which leads to our research question for the project:
