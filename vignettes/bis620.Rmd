@@ -40,15 +40,19 @@ $$
 
 ## Motivation
 
-Since Body Fat Percentage (BFP) is usually regarded as a fitness indicator, similar to BMI and so on, body fat tend to have a lower reputation than it actually deserves. In fact, despite its negative impact to human body's daily function and athletic capability as body fat increase and accumulate in one's body, fat and limpid are actually considered an indispensable part of body composition and are of significant roles and responsibilities in terms of body metabolism and energy reservation.
+Since Body Fat Percentage (BFP) is usually regarded as a fitness indicator, similar to BMI and other related factors, body fat tend to have a lower reputation than it actually deserves. In fact, despite the negative impact to human body's daily function and athletic capability as fat increase and accumulate in one's body, fat and limpid are actually considered an indispensable part of body composition and are of significant roles and responsibilities in terms of body metabolism and energy reservation.
 
 <br>
 
-Regardless, either for medical purposes in clinical scenarios or simple fitness purposes in people's daily life, body fat has been showing its impact and gaining increasing amount of attention to help people know better about their body composition condition. Interestingly, unlike the simple equation of its definition, a precise measurement for body fat percentage can be a complicated process. For example, scientific validated methods include the approaches of underwater weighing, whole-body air displacement plethysmography, use of X-ray absorptiometry and so on. The results are accurate but could be considered too costly in terms of both time and money.
+Regardless, body fat has been showing its impact and gaining increasing amount of attention to help people know better about their body composition condition. Interestingly, unlike the simple equation of its definition, a precise measurement for body fat percentage can be a complicated process. For example, scientific validated methods include the approaches of underwater weighing, whole-body air displacement plethysmography, use of X-ray absorptiometry and so on. The results are accurate but could be considered too costly in terms of both time and money for a simple number result. 
 
 <br>
 
-This initially motivated people to investigate and attempt to find an alternative way or a so-called "best model" to estimate an individual's body fat percentage based on other anthropometric measurement that can be more easily acquired. For instance, in most [Body Fat Percentage Calculators](https://www.calculator.net/body-fat-calculator.html) available on the internet today, factors or estimators that are commonly used include gender, age, weight, height, measurement of wrist, neck, and so on. we are curious about if any of the estimators here or variables not listed are actually significant in terms of predicting one's body fat percentage. 
+However, body fat percentage is still considered such an important attribute to keep track of for many purposes and scenarios. For instance, patients with obese conditions or diabetes, clinical researchers monitoring health condition of their patients, or anyone who constantly monitors their body as a fitness routine may all want to have access to their body fat percentage.
+
+<br>
+
+This initially motivated people to investigate and attempt to find an alternative way or a so-called "best model" to effectively obtain an **estimate** of an individual's body fat percentage based on other anthropometric measurement that can be more easily acquired. For instance, in most [Body Fat Percentage Calculators](https://www.calculator.net/body-fat-calculator.html) available on the internet today, factors or estimators that are commonly used include gender, age, weight, height, measurement of wrist, neck, and so on. we are curious about **if any of the estimators here or variables not listed are actually significant in terms of predicting one's body fat percentage**. 
 
 <br>
 
@@ -69,7 +73,7 @@ Within the scope of this project, we will be mainly focusing on linear relations
 
 <br>
 
-**Out of all possible combinations of the explanatory variables, which measurements are the most significant estimators in terms of predicting body fat percentage of an individual?**
+**Out of all explanatory variables available here, which measurements are the most significant estimators in terms of predicting the corresponding body fat percentage of an individual?**
 
 <br>
 
@@ -130,7 +134,9 @@ bestmodel_bic(x)
 <br>
 
 ***
-# Interpretation and conclusions
+# Interpretation and Conclusions
+
+## Results Summary
 
 The results we obtained from the functions based on two different criterion are different but justifiable. As we specified earlier, discrepancy here between the CP and BIC could be explained by the fact that BIC has an increasing parameter (larger punishment) for larger number of variables selected, which usually leads to a smaller model compared to the output from Mallow's CP.
 <br>
@@ -148,9 +154,17 @@ summary(lm(x$Pct.BF ~ x$Abdomen + x$Wrist))$r.squared
 
 <br>
 
+## Conclusions
 By the definition of R-squared value, we claim that the two significant estimators we found from our study can explain more than 71% of the total variance of body fat percentage while the other 11 variables together can only explain less than 4%. In conclusion, the measurement of an individual's abdomen and wrist can be two powerful attributes if used to predict the body fat percentage. 
+
 <br>
-Indeed, many of the current online BFP calculator/estimator website uses the measurement of waist or abdomen as one of their factors, but they are often missing the wrist measurement, whose significance has been proved from the results of our study. By incorporating this important factor of wrist measurement into the calculation system, it would most likely benefit the accuracy and prediction power of any BFP calculator.
+
+Indeed, many of the current online BFP calculator/estimator website uses the measurement of waist or abdomen as one of their factors, but they are often missing the wrist measurement, whose significance has been proved from the results of our study. By incorporating this important factor of wrist measurement into the calculation system, it would most likely benefit the accuracy and prediction power when estimate the body fat level in any applicable scenario.
+
+<br>
+
+## Future Prospects
+Additionally, researchers and clinical scientists can further validate and test the key findings with more similar data available using the same functions embedded in our package. From there, researchers can initiate more interesting proposals besides estimating the body fat level. For example, the association can be used to investigate if the size of certain parts of human body tends to be more sensitive to the change of body fat level while other measurements tend to be more stable; researchers can also examine if body fat level tends to have any distinguishing distribution against age, weight, or other variables.
 
 
 ***
