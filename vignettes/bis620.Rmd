@@ -174,7 +174,8 @@ Additionally, researchers and clinical scientists can further validate and test 
 [Body Fat Percentage Calculators](https://www.calculator.net/body-fat-calculator.html)<br>
 [Body Composition](https://health.ucdavis.edu/sports-medicine/resources/body-fat)<br>
 [Air displacement plethysmography](https://en.wikipedia.org/wiki/Air_displacement_plethysmography)<br>
-[Underwater weighing](https://en.wikipedia.org/wiki/Hydrostatic_weighing)
+[Underwater weighing](https://en.wikipedia.org/wiki/Hydrostatic_weighing)<br>
+
 
 
 
