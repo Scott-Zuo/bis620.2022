@@ -23,7 +23,7 @@ library(bis620.2022)
 
 ## Introduction
 
-Body Fat Percentage is an important index for human being as it is capable of indicating the health condition of an individual's body composition. It is defined as the following:
+Body Fat Percentage is an important index for human beings as it is capable of indicating the health condition of an individual's body composition. It is defined as the following:
 
 <br>
 
@@ -34,25 +34,25 @@ $$
 
 <br>
 
-[Body fat](https://en.wikipedia.org/wiki/Body_fat_percentage) is usually divided into two sub-categories: essential body fat that is necessary to maintain life and reproductive functions and storage body fat which consists of fat accumulation in adipose tissue. 
+[Body fat](https://en.wikipedia.org/wiki/Body_fat_percentage) is usually divided into two sub-categories: essential body fat which is necessary to maintain life and reproductive functions and storage body fat which consists of fat accumulation in adipose tissue. 
 
 <br>
 
 ## Motivation
 
-Since Body Fat Percentage (BFP) is usually regarded as a fitness indicator, similar to BMI and other related factors, body fat tend to have a lower reputation than it actually deserves. In fact, despite the negative impact to human body's daily function and athletic capability as fat increase and accumulate in one's body, fat and limpid are actually considered an indispensable part of body composition and are of significant roles and responsibilities in terms of body metabolism and energy reservation.
+Since Body Fat Percentage (BFP) is usually regarded as a fitness indicator, similar to BMI and other related factors, body fat tends to have a lower reputation than it actually deserves. In fact, despite the negative impact on the human body's daily function and athletic capability as fat increase and accumulate in one's body, fat and limpid are actually considered indispensable part of body composition and are of significant roles and responsibilities in terms of body metabolism and energy reservation.
 
 <br>
 
-Regardless, body fat has been showing its impact and gaining increasing amount of attention to help people know better about their body composition condition. Interestingly, unlike the simple equation of its definition, a precise measurement for body fat percentage can be a complicated process. For example, scientific validated methods include the approaches of underwater weighing, whole-body air displacement plethysmography, use of X-ray absorptiometry and so on. The results are accurate but could be considered too costly in terms of both time and money for a simple number result. 
+Regardless, body fat has been showing its impact and gaining an increasing amount of attention to help people know better about their body composition condition. Interestingly, unlike the simple equation of its definition, a precise measurement of body fat percentage can be a complicated process. For example, scientifically validated methods include the approaches of underwater weighing, whole-body air displacement plethysmography, the use of X-ray absorptiometry, and so on. The results are accurate but could be considered too costly in terms of both time and money for a simple number result. 
 
 <br>
 
-However, body fat percentage is still considered such an important attribute to keep track of for many purposes and scenarios. For instance, patients with obese conditions or diabetes, clinical researchers monitoring health condition of their patients, or anyone who constantly monitors their body as a fitness routine may all want to have access to their body fat percentage.
+However, body fat percentage is still considered an important attribute to keep track of for many purposes and scenarios. For instance, patients with obesity conditions or diabetes, clinical researchers monitoring the health condition of their patients, or anyone who constantly monitors their body as a fitness routine may all want to have access to their body fat percentage.
 
 <br>
 
-This initially motivated people to investigate and attempt to find an alternative way or a so-called "best model" to effectively obtain an **estimate** of an individual's body fat percentage based on other anthropometric measurement that can be more easily acquired. For instance, in most [Body Fat Percentage Calculators](https://www.calculator.net/body-fat-calculator.html) available on the internet today, factors or estimators that are commonly used include gender, age, weight, height, measurement of wrist, neck, and so on. we are curious about **if any of the estimators here or variables not listed are actually significant in terms of predicting one's body fat percentage**. 
+This initially motivated people to investigate and attempt to find an alternative way or a so-called "best model" to effectively obtain an **estimate** of an individual's body fat percentage based on other anthropometric measurements that can be more easily acquired. For instance, in most [Body Fat Percentage Calculators](https://www.calculator.net/body-fat-calculator.html) available on the internet today, factors or estimators that are commonly used include gender, age, weight, height, measurement of wrist, neck, and so on. we are curious about **if any of the estimators here or variables not listed are actually significant in terms of predicting one's body fat percentage**. 
 
 <br>
 
@@ -60,7 +60,7 @@ This initially motivated people to investigate and attempt to find an alternativ
 # Research Question and Method
 
 ## Dataset and Research Question
-To further investigate the topic of interest and develop the methodology, we chose to use this example dataset available from the Yale Statistics & Data Science department that consists of 250 observation and 14 measurements on the individuals including body fat percentage and other anthropometric measurements.
+To further investigate the topic of interest and develop the methodology, we chose to use this example dataset available from the Yale Statistics & Data Science department that consists of 250 observations and 14 measurements on the individuals including body fat percentage and other anthropometric measurements.
 <br>
 ```{r, echo = FALSE}
 library(DT)
@@ -69,23 +69,23 @@ datatable(x[, 1:7], options = list(pageLength = 10))
 datatable(x[, 8:14], options = list(pageLength = 10))
 ```
 <br>
-Within the scope of this project, we will be mainly focusing on linear relationship between body fat percentage and other variables, which leads to our research question for the project:
+Within the scope of this project, we will be mainly focusing on linear relationships between body fat percentage and other variables, which leads to our research question for the project:
 
 <br>
 
-**Out of all explanatory variables available here, which measurements are the most significant estimators in terms of predicting the corresponding body fat percentage of an individual?**
+**Out of all the explanatory variables available here, which measurements are the most significant estimators in terms of predicting the corresponding body fat percentage of an individual?**
 
 <br>
 
 ## Method for Model Selection
 
-To determine the most significant estimators from all of the measurements we currently have, one commonly used approach could be starting with a full linear model. By building a full linear model, it provides us information such as a P-value for each individual estimator, from which we can determine its significance based on a pre-determined \alpha level. However, in this project as we develop the function, we want to avoid using the P-value or artificially setting the significance bound while choosing the best estimators or number of estimators to reduce bias, which is why we consider using BIC or Mallow's CP as a criterion for model selection.
+To determine the most significant estimators from all of the measurements we currently have, one commonly used approach could be starting with a full linear model. By building a full linear model, it provides us with information such as a P-value for each individual estimator, from which we can determine its significance based on a pre-determined \alpha level. However, in this project, as we develop the function, we want to avoid using the P-value or artificially setting the significance bound while choosing the best estimators or number of estimators to reduce bias, which is why we consider using BIC or Mallow's CP as a criterion for model selection.
 
 <br>
 
 As it is defined in statistics, Mallow's CP and BIC criterion can be formulated as the following:
 <br>
-*For any X-variables in an n by m matrix, the model with p number of variables as estimatros has the following:*
+*For any X-variables in an n by m matrix, the model with p number of variables as estimators has the following:*
 $$
 Mallow's\space CP: C_p = \frac{RSS_p}{S^2_m} + 2P
 $$
@@ -93,18 +93,18 @@ $$
 Bayesian\space Information\space Criterion: BIC = nln(\sigma_p^2) + ln(n)p
 $$
 <br>
-The criterion here can help us obtain the significant estimators by minimizing its own value, the mechanism can be explained as: by punishing the larger number of variables used to build the model while also minimizing modeling error, the expression is formulated as a convex function which outputs an optimal solution that can be seen as the "best model" with most significant estimators. The biggest difference here between the CP and BIC could be that BIC has a bigger punishment parameter for larger number of variables selected, which usually leads to a smaller model compared to the output from Mallow's CP. However, both criterion return models less arbitrarily compared to using a P-value and a randomly picked alpha-level.
+The criterion here can help us obtain the significant estimators by minimizing its own value, the mechanism can be explained as: by punishing the larger number of variables used to build the model while also minimizing modeling error, the expression is formulated as a convex function which outputs an optimal solution that can be seen as the "best model" with most significant estimators. The biggest difference here between the CP and BIC could be that BIC has a bigger punishment parameter for a larger number of variables selected, which usually leads to a smaller model compared to the output from Mallow's CP. However, both criterion return models less arbitrarily compared to using a P-value and a randomly picked alpha level.
 
 <br>
 
 ***
 # Analysis and Results
 
-With the help of package `leaps`, we are able to develop and test several useful functions that can help us analyze and assess the theories above. Specifically, two functions for each of the criterion are embedded in this `bis620.2022` package.
+With the help of package `leaps`, we are able to develop and test several useful functions that can help us analyze and assess the theories above. Specifically, two functions for each of the criteria are embedded in this `bis620.2022` package.
 
 <br>
 
-First of all, we start with some graphing tools to help us visualize the CP and BIC value as different number of estimators are used
+First of all, we start with some graphing tools to help us visualize the CP and BIC values as different numbers of estimators are used
 
 <br>
 ```{r, echo = FALSE}
@@ -128,8 +128,8 @@ bestmodel_cp(x)
 bestmodel_bic(x)
 ```
 
-- The Mallow's CP criterion returns the following variables as the most significant estimators: **`r bestmodel_cp(x)`**
-- The BIC criterion returns the following variables as the most significant estimators: **`r bestmodel_bic(x)`**
+- Mallow's CP criterion returns the following variables as the most significant estimators: **`r bestmodel_cp(x)`**
+- BIC criterion returns the following variables as the most significant estimators: **`r bestmodel_bic(x)`**
 
 <br>
 
@@ -138,7 +138,7 @@ bestmodel_bic(x)
 
 ## Results Summary
 
-The results we obtained from the functions based on two different criterion are different but justifiable. As we specified earlier, discrepancy here between the CP and BIC could be explained by the fact that BIC has an increasing parameter (larger punishment) for larger number of variables selected, which usually leads to a smaller model compared to the output from Mallow's CP.
+The results we obtained from the functions based on two different criteria are different but justifiable. As we specified earlier, the discrepancy here between the CP and BIC could be explained by the fact that BIC has an increasing parameter (larger punishment) for a larger number of variables selected, which usually leads to a smaller model compared to the output from Mallow's CP.
 <br>
 
 Specifically in this project, we will choose the overlapping variables from the two criterion output as the conclusive set of significant estimators to predict the body fat percentage. As a factual check, we also evaluated the modeling effectiveness by comparing the `r.squared` values between the full model and our "best model".
@@ -159,12 +159,12 @@ By the definition of R-squared value, we claim that the two significant estimato
 
 <br>
 
-Indeed, many of the current online BFP calculator/estimator website uses the measurement of waist or abdomen as one of their factors, but they are often missing the wrist measurement, whose significance has been proved from the results of our study. By incorporating this important factor of wrist measurement into the calculation system, it would most likely benefit the accuracy and prediction power when estimate the body fat level in any applicable scenario.
+Indeed, many of the current online BFP calculator/estimator websites use the measurement of the waist or abdomen as one of their factors, but they are often missing the wrist measurement, whose significance has been proven from the results of our study. By incorporating this important factor of wrist measurement into the calculation system, it would most likely benefit the accuracy and prediction power when estimating the body fat level in any applicable scenario.
 
 <br>
 
 ## Future Prospects
-Additionally, researchers and clinical scientists can further validate and test the key findings with more similar data available using the same functions embedded in our package. From there, researchers can initiate more interesting proposals besides estimating the body fat level. For example, the association can be used to investigate if the size of certain parts of human body tends to be more sensitive to the change of body fat level while other measurements tend to be more stable; researchers can also examine if body fat level tends to have any distinguishing distribution against age, weight, or other variables.
+Additionally, researchers and clinical scientists can further validate and test the key findings with more similar data available using the same functions embedded in our package. From there, researchers can initiate more interesting proposals besides estimating the body fat level. For example, the association can be used to investigate if the size of certain parts of the human body tends to be more sensitive to the change of body fat level while other measurements tend to be more stable; researchers can also examine if body fat level tends to have any distinguishing distribution against age, weight, or other variables.
 
 
 ***
